@@ -3,16 +3,14 @@ import 'package:meta/meta.dart';
 import 'src/nav_button.dart';
 import 'src/nav_custom_painter.dart';
 
-typedef _LetIndexPage = bool Function(int value);
-
 class CurvedNavigationBar extends StatefulWidget {
   final List<Widget> items;
   final int index;
   final Color color;
   final Color buttonBackgroundColor;
   final Color backgroundColor;
+  final Color shadowColor;
   final ValueChanged<int> onTap;
-  final _LetIndexPage letIndexChange;
   final Curve animationCurve;
   final Duration animationDuration;
   final double height;
@@ -24,13 +22,12 @@ class CurvedNavigationBar extends StatefulWidget {
     this.color = Colors.white,
     this.buttonBackgroundColor,
     this.backgroundColor = Colors.blueAccent,
+    this.shadowColor = Colors.blueAccent,
     this.onTap,
-    _LetIndexPage letIndexChange,
     this.animationCurve = Curves.easeOut,
     this.animationDuration = const Duration(milliseconds: 600),
     this.height = 75.0,
-  })  : letIndexChange = letIndexChange ?? ((_) => true),
-        assert(items != null),
+  })  : assert(items != null),
         assert(items.length >= 1),
         assert(0 <= index && index < items.length),
         assert(0 <= height && height <= 75.0),
@@ -94,10 +91,19 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      color: widget.backgroundColor,
       height: widget.height,
+      decoration: BoxDecoration(
+        color: widget.backgroundColor,
+        boxShadow: [
+          BoxShadow(
+            color: widget.shadowColor,
+            offset: Offset(0.0, 5.0), //(x,y)
+            blurRadius: 20,
+          ),
+        ],
+      ),
       child: Stack(
-        clipBehavior: Clip.none,
+        overflow: Overflow.visible,
         alignment: Alignment.bottomCenter,
         children: <Widget>[
           Positioned(
@@ -146,28 +152,25 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 height: 100.0,
                 child: Row(
                     children: widget.items.map((item) {
-                  return NavButton(
-                    onTap: _buttonTap,
-                    position: _pos,
-                    length: _length,
-                    index: widget.items.indexOf(item),
-                    child: Center(child: item),
-                  );
-                }).toList())),
+                      return NavButton(
+                        onTap: _buttonTap,
+                        position: _pos,
+                        length: _length,
+                        index: widget.items.indexOf(item),
+                        child: item,
+                      );
+                    }).toList())),
           ),
         ],
       ),
     );
   }
 
-  void setPage(int index) {
+  void setPage(int index){
     _buttonTap(index);
   }
 
   void _buttonTap(int index) {
-    if (!widget.letIndexChange(index)) {
-      return;
-    }
     if (widget.onTap != null) {
       widget.onTap(index);
     }
