@@ -16,6 +16,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: CurvedNavigationBar(
+          titles: [
+            'Speed test',
+            'Data usage',
+            'Feedback',
+            'Notification',
+            'Settings',
+          ],
+          titleStyle: TextStyle(
+            fontSize: 10,
+          ),
           key: _bottomNavigationKey,
           index: 0,
           height: 50.0,
@@ -36,7 +46,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
               _page = index;
             });
           },
-          letIndexChange: (index) => true,
         ),
         body: Container(
           color: Colors.blueAccent,
