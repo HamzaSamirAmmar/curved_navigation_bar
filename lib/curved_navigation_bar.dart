@@ -102,7 +102,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
           BoxShadow(
             color: widget.shadowColor,
             offset: Offset(0.0, 5.0), //(x,y)
-            blurRadius: 20,
+            blurRadius: 80,
           ),
         ],
       ),

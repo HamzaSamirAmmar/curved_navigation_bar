@@ -19,12 +19,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
           titles: [
             'Speed test',
             'Data usage',
-            'Feedback',
+            'Settings',
             'Notification',
             'Settings',
           ],
           titleStyle: TextStyle(
-            fontSize: 10,
+            fontSize: 12,
           ),
           key: _bottomNavigationKey,
           index: 0,
@@ -40,6 +40,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           buttonBackgroundColor: Colors.white,
           backgroundColor: Colors.blueAccent,
           animationCurve: Curves.easeInOut,
+          shadowColor: Colors.black,
           animationDuration: Duration(milliseconds: 600),
           onTap: (index) {
             setState(() {
