@@ -172,9 +172,18 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: widget.titles!
-                          .map((e) => Text(
-                                e,
-                                style: widget.titleStyle,
+                          .map((e) => GestureDetector(
+                                onTap: () {
+                                  if (widget.onTap != null &&
+                                      widget.titles != null) {
+                                    widget.onTap!(widget.titles!.indexOf(e));
+                                    _buttonTap(widget.titles!.indexOf(e));
+                                  }
+                                },
+                                child: Text(
+                                  e,
+                                  style: widget.titleStyle,
+                                ),
                               ))
                           .toList(),
                     ),

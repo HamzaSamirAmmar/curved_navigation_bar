@@ -19,7 +19,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           titles: [
             'Speed test',
             'Data usage',
-            'Settings',
+            'asd',
             'Notification',
             'Settings',
           ],
