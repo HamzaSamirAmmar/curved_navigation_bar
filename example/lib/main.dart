@@ -28,7 +28,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           ),
           key: _bottomNavigationKey,
           index: 0,
-          height: 60.0,
+          height: 50.0,
           items: <Widget>[
             Icon(Icons.add, size: 30),
             Icon(Icons.list, size: 30),
@@ -58,9 +58,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
                 ElevatedButton(
                   child: Text('Go To Page of index 1'),
                   onPressed: () {
-                    final CurvedNavigationBarState? navBarState =
-                        _bottomNavigationKey.currentState;
-                    navBarState?.setPage(1);
+                    final CurvedNavigationBarState navBarState =
+                        _bottomNavigationKey.currentState!;
+                    navBarState.setPage(1);
                   },
                 )
               ],
