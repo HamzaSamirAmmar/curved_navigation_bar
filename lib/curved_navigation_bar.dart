@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'src/nav_button.dart';
@@ -124,20 +123,18 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 ? _pos * size.width
                 : null,
             width: size.width / _length,
-            child: IgnorePointer(
-              child: Center(
-                child: Transform.translate(
-                  offset: Offset(
-                    0,
-                    -(1 - _buttonHide) * 70,
-                  ),
-                  child: Material(
-                    color: widget.buttonBackgroundColor ?? widget.color,
-                    type: MaterialType.circle,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: _icon,
-                    ),
+            child: Center(
+              child: Transform.translate(
+                offset: Offset(
+                  0,
+                  -(1 - _buttonHide) * 80,
+                ),
+                child: Material(
+                  color: widget.buttonBackgroundColor ?? widget.color,
+                  type: MaterialType.circle,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: _icon,
                   ),
                 ),
               ),
@@ -158,7 +155,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
           Positioned(
             left: 0,
             right: 0,
-            bottom: 0 - (60.0 - widget.height),
+            bottom: 0 - (50.0 - widget.height),
             child: SizedBox(
                 height: 100.0,
                 child: Row(
