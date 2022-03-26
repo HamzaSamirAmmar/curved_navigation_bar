@@ -1,3 +1,4 @@
+import 'package:curved_navigation_bar/src/nav_title.dart';
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'src/nav_button.dart';
@@ -35,7 +36,8 @@ class CurvedNavigationBar extends StatefulWidget {
     this.height = 75.0,
     this.titleStyle = const TextStyle(),
     this.titles,
-  })  : letIndexChange = letIndexChange ?? ((_) => true),
+  })
+      : letIndexChange = letIndexChange ?? ((_) => true),
         assert(items.length >= 1),
         assert(0 <= index && index < items.length),
         assert(0 <= height && height <= 75.0),
@@ -97,7 +99,9 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
     return Container(
       height: widget.height,
       decoration: BoxDecoration(
@@ -160,40 +164,32 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
                 height: 100.0,
                 child: Row(
                     children: widget.items.map((item) {
-                  return NavButton(
-                    onTap: _buttonTap,
-                    position: _pos,
-                    length: _length,
-                    index: widget.items.indexOf(item),
-                    child: item,
-                  );
-                }).toList())),
+                      return NavButton(
+                        onTap: _buttonTap,
+                        position: _pos,
+                        length: _length,
+                        index: widget.items.indexOf(item),
+                        child: item,
+                      );
+                    }).toList())),
           ),
           widget.titles != null
-              ? Align(
-                  alignment: Alignment.bottomCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: widget.titles!
-                          .map((e) => GestureDetector(
-                                onTap: () {
-                                  if (widget.onTap != null &&
-                                      widget.titles != null) {
-                                    widget.onTap!(widget.titles!.indexOf(e));
-                                    _buttonTap(widget.titles!.indexOf(e));
-                                  }
-                                },
-                                child: Text(
-                                  e,
-                                  style: widget.titleStyle,
-                                ),
-                              ))
-                          .toList(),
+              ? Padding(
+            padding: const EdgeInsets.only(top: 10.0),
+            child: Row(
+              children: widget.titles!
+                  .map(
+                    (title) =>
+                    NavTitle(
+                      index: widget.titles!.indexOf(title),
+                      onTap: _buttonTap,
+                      title: title,
+                      titleStyle: widget.titleStyle,
                     ),
-                  ),
-                )
+              )
+                  .toList(),
+            ),
+          )
               : Container(),
         ],
       ),
