@@ -115,7 +115,7 @@ class CurvedNavigationBarState extends State<CurvedNavigationBar>
         ],
       ),
       child: Stack(
-        overflow: Overflow.visible,
+        clipBehavior: Clip.none,
         alignment: Alignment.bottomCenter,
         children: <Widget>[
           Positioned(
